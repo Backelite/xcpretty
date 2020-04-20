@@ -12,11 +12,11 @@ module XCPretty
     end
 
     it "initializes with unicode" do
-      @formatter.use_unicode?.should be_truthy
+      @formatter.use_unicode?.should == true
     end
 
     it "initializes with color" do
-      @formatter.colorize?.should be_truthy
+      @formatter.colorize?.should == true
     end
 
     it "outputs to new lines by default" do
@@ -91,6 +91,10 @@ module XCPretty
 )
     end
 
+    it "formats will not be code signed warnings" do
+      @formatter.format_will_not_be_code_signed(SAMPLE_WILL_NOT_BE_CODE_SIGNED).should == "#{@formatter.yellow("⚠️  FrameworkName will not be code signed because its settings don't specify a development team.")}"
+    end
+
 
     it "formats failures per suite" do
         Syntax.stub(:highlight) { |snippet| snippet.contents }
@@ -99,18 +103,21 @@ module XCPretty
         second_path = File.expand_path('spec/fixtures/NSStringTests.m:57')
 
         failures = {
-          'CarSpec' => [
-            {
-              file_path: first_path,
-              reason: "just doesn't work",
-              test_case: 'Starting the car'
-            }],
-            'StringSpec' => [
-              {
-                file_path: second_path,
-                reason: "doesn't split",
-                test_case: 'Splitting the string'
-              }]
+          'CarSpec' => [{
+            file_path: first_path,
+            reason: "just doesn't work",
+            test_case: 'Starting the car'
+          }],
+          'StringSpec' => [{
+            file_path: second_path,
+            reason: "doesn't split",
+            test_case: 'Splitting the string'
+          }],
+          'UI spec' => [{
+            file_path: "<unknown.m>:0",
+            reason: "ui test failed",
+            test_case: 'yolo'
+          }]
         }
         @formatter.format_test_summary(SAMPLE_EXECUTED_TESTS, failures).should == %Q(
 
@@ -131,6 +138,10 @@ StringSpec
         [[[@"  Look mo, no empties!   " strip] should] equal:@"Look mo, no empties!"];
     });
   ```
+
+UI spec
+  yolo, #{@formatter.red("ui test failed")}
+  #{@formatter.cyan("<unknown.m>:0")}
 
 
 #{@formatter.red(SAMPLE_EXECUTED_TESTS)})

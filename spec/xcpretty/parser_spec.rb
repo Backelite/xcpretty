@@ -23,9 +23,19 @@ module XCPretty
       @parser.parse(SAMPLE_ANALYZE_SHALLOW)
     end
 
+    it "parses analyze for a C++ target" do
+      @formatter.should receive(:format_analyze).with("CCChip8DisplayView.cpp", "CocoaChip/CCChip8DisplayView.cpp")
+      @parser.parse(SAMPLE_ANALYZE_CPP)
+    end
+
     it "parses build target" do
       @formatter.should receive(:format_build_target).with("The Spacer", "Pods", "Debug")
       @parser.parse(SAMPLE_BUILD)
+    end
+
+    it "parses aggregate target" do
+      @formatter.should receive(:format_aggregate_target).with("Be Aggro", "AggregateExample", "Debug")
+      @parser.parse(SAMPLE_AGGREGATE_TARGET)
     end
 
     it "parses analyze target" do
@@ -148,9 +158,24 @@ module XCPretty
       @parser.parse(SAMPLE_LD)
     end
 
+    it "parses Ld with relative path" do
+      @formatter.should receive(:format_linking).with('ObjectiveSugar', 'normal', 'i386')
+      @parser.parse(SAMPLE_LD_RELATIVE)
+    end
+
     it "parses Libtool" do
       @formatter.should receive(:format_libtool).with('libPods-ObjectiveSugarTests-Kiwi.a')
       @parser.parse(SAMPLE_LIBTOOL)
+    end
+
+    it "parses uitest failing tests" do
+      @formatter.should receive(:format_failing_test).with(
+        "viewUITests.vmtAboutWindow",
+        "testConnectToDesktop",
+        "UI Testing Failure - Unable to find hit point for element Button 0x608001165880: {{74.0, -54.0}, {44.0, 38.0}}, label: 'Disconnect'",
+        "<unknown>:0"
+      )
+      @parser.parse(SAMPLE_UITEST_CASE_WITH_FAILURE)
     end
 
     it "parses specta failing tests" do
@@ -176,7 +201,7 @@ module XCPretty
 
     it "parses passing ocunit tests" do
       @formatter.should receive(:format_passing_test).with('RACCommandSpec',
-                                                           'enabled_signal_should_send_YES_while_executing_is_YES_and_allowsConcurrentExecution_is_YES',
+                                                           'enabled_signal_should_send_YES_while_executing_is_YES',
                                                            '0.001')
       @parser.parse(SAMPLE_OCUNIT_TEST)
     end
@@ -336,6 +361,13 @@ module XCPretty
       @parser.parse(SAMPLE_SPECTA_SUITE_BEGINNING)
     end
 
+    it "parses unknown strings" do
+      @formatter.should receive(:format_other).with(
+        SAMPLE_FORMAT_OTHER_UNRECOGNIZED_STRING
+      )
+      @parser.parse(SAMPLE_FORMAT_OTHER_UNRECOGNIZED_STRING)
+    end
+
     context "errors" do
       it "parses clang errors" do
         @formatter.should receive(:format_error).with(SAMPLE_CLANG_ERROR)
@@ -427,6 +459,41 @@ module XCPretty
         @parser.parse(SAMPLE_CODESIGN_ERROR_NO_SPACES)
       end
 
+      it "parses No profile matching error:" do
+        @formatter.should receive(:format_error).with(
+          "No profile matching 'TargetName' found:  Xcode couldn't find a profile matching 'TargetName'. Install the profile (by dragging and dropping it onto Xcode's dock item) or select a different one in the General tab of the target editor."
+        )
+        @parser.parse(SAMPLE_NO_PROFILE_MATCHING_ERROR)
+      end
+
+      it "parses requires provision error:" do
+        @formatter.should receive(:format_error).with(
+          'PROJECT_NAME requires a provisioning profile. Select a provisioning profile for the "Debug" build configuration in the project editor.'
+        )
+        @parser.parse(SAMPLE_REQUIRES_PROVISION)
+      end
+
+      it "parses no certificate error:" do
+        @formatter.should receive(:format_error).with(
+          "No certificate matching 'iPhone Distribution: Name (B89SBB0AV9)' for team 'B89SBB0AV9':  Select a different signing certificate for CODE_SIGN_IDENTITY, a team that matches your selected certificate, or switch to automatic provisioning."
+        )
+        @parser.parse(SAMPLE_NO_CERTIFICATE)
+      end
+
+      it "parses swift unavailable error:" do
+        @formatter.should receive(:format_error).with(
+          SAMPLE_SWIFT_UNAVAILABLE
+        )
+        @parser.parse(SAMPLE_SWIFT_UNAVAILABLE)
+      end
+
+      it "parses use legacy swift error:" do
+        @formatter.should receive(:format_error).with(
+          SAMPLE_USE_LEGACY_SWIFT
+        )
+        @parser.parse(SAMPLE_USE_LEGACY_SWIFT)
+      end
+
       it "parses ld library errors" do
         @formatter.should receive(:format_error).with(
           SAMPLE_LD_LIBRARY_ERROR
@@ -447,6 +514,28 @@ module XCPretty
         end
         @formatter.should_not receive(:format_compile_error)
         @parser.parse("hohohoooo")
+      end
+
+      it "parses provisioning profile doesn't support capability error" do
+        @formatter.should receive(:format_error)
+        @parser.parse(SAMPLE_PROFILE_DOESNT_SUPPORT_CAPABILITY_ERROR)
+      end
+
+      it "parses provisioning profile doesn't include entitlement error" do
+        @formatter.should receive(:format_error)
+        @parser.parse(SAMPLE_PROFILE_DOESNT_INCLUDE_ENTITLEMENT_ERROR)
+      end
+
+      it "parses code signing is required error" do
+        @formatter.should receive(:format_error)
+        @parser.parse(SAMPLE_CODE_SIGNING_IS_REQUIRED_ERROR)
+      end
+
+      it "parses module includes error" do
+        @formatter.should receive(:format_error).with(
+          "error: umbrella header for module 'ModuleName' does not include header 'Header.h'"
+        )
+        @parser.parse(SAMPLE_MODULE_INCLUDES_ERROR)
       end
     end
 
@@ -471,6 +560,11 @@ module XCPretty
       it "parses ld warnings" do
         @formatter.should receive(:format_ld_warning).with("ld: embedded dylibs/frameworks only run on iOS 8 or later")
         @parser.parse("ld: warning: embedded dylibs/frameworks only run on iOS 8 or later")
+      end
+
+      it "parses will not be code signed warnings" do
+        @formatter.should receive(:format_will_not_be_code_signed).with(SAMPLE_WILL_NOT_BE_CODE_SIGNED)
+        @parser.parse(SAMPLE_WILL_NOT_BE_CODE_SIGNED)
       end
     end
 

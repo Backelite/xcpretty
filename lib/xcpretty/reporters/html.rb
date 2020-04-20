@@ -1,7 +1,6 @@
 module XCPretty
-  class HTML
+  class HTML < Reporter
 
-    include XCPretty::FormatMethods
     FILEPATH = 'build/reports/tests.html'
     TEMPLATE = File.expand_path('../../../../assets/report.html.erb', __FILE__)
     SCREENSHOT_DIR = 'build/reports'
@@ -16,12 +15,8 @@ module XCPretty
     end
 
     def initialize(options)
-      load_dependencies
+      super(options)
       @test_suites = {}
-      @filepath    = options[:path] || FILEPATH
-      @parser      = Parser.new(self)
-      @test_count  = 0
-      @fail_count  = 0
       @collect_screenshots = options[:screenshots]
     end
 
@@ -32,29 +27,24 @@ module XCPretty
     def format_failing_test(suite, test_case, reason, file)
       add_test(suite, name: test_case, failing: true,
                       reason: reason, file: file,
-                      snippet: formatted_snippet(file))
+                      snippet: formatted_snippet(file),
+                      screenshots: [])
     end
 
     def format_passing_test(suite, test_case, time)
-      add_test(suite, name: test_case, time: time)
-    end
-
-    def finish
-      FileUtils.mkdir_p(File.dirname(@filepath))
-      write_report
+      add_test(suite, name: test_case, time: time, screenshots: [])
     end
 
     private
 
     def formatted_snippet(filepath)
       snippet = Snippet.from_filepath(filepath)
-      Syntax.highlight(snippet)
+      Syntax.highlight_html(snippet)
     end
-
 
     def add_test(suite_name, data)
       @test_count += 1
-      @test_suites[suite_name] ||= {tests: [], screenshots: []}
+      @test_suites[suite_name] ||= {tests: []}
       @test_suites[suite_name][:tests] << data
       if data[:failing]
         @test_suites[suite_name][:failing] = true
@@ -80,16 +70,21 @@ module XCPretty
       Dir.foreach(SCREENSHOT_DIR) do |item|
         next if item == '.' || item == '..' || File.extname(item) != '.png'
 
-        suite_name = find_test_suite(item)
-        next if suite_name.nil?
+        test = find_test(item)
+        next if test.nil?
 
-        @test_suites[suite_name][:screenshots] << item
+        test[:screenshots] << item
       end
     end
 
-    def find_test_suite(image_name)
-      @test_suites.each do |key, value|
-        return key if image_name.start_with?(key)
+    def find_test(image_name)
+      @test_suites.each do |name, info|
+        info[:tests].each do |test, index|
+          combined_name = name + '_' + test[:name]
+          test_name_matches = image_name.start_with?(test[:name])
+          combined_name_matches = image_name.start_with?(combined_name)
+          return test if test_name_matches || combined_name_matches
+        end
       end
       nil
     end

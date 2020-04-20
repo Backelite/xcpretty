@@ -18,16 +18,19 @@ end
 
 Then(/^the JSON compilation database should contain an entry with a command$/) do
   json_db.length.should == 1
-  json_db[0]['command'].should start_with('/Applications/Xcode.app/Contents/Developer')
+  json_db[0]['command'].should start_with('/')
+  json_db[0]['command'].should include('clang ')
+  json_db[0]['command'].should include(' -c ')
+  json_db[0]['command'].should include(' -o ')
   json_db[0]['command'].should end_with('.o')
 end
 
 Then(/^the JSON compilation database should contain an entry with a file$/) do
-  json_db[0]['file'].should == '/Users/musalj/code/OSS/ObjectiveSugar/Classes/NSMutableArray+ObjectiveSugar.m'
+  json_db[0]['file'].should end_with('.m')
 end
 
 Then(/^the JSON compilation database should contain an entry with a directory$/) do
-  json_db[0]['directory'].should == '/'
+  json_db[0]['directory'].should start_with('/')
 end
 
 Then(/^the JSON compilation database should be complete$/) do
@@ -39,3 +42,4 @@ Then(/^entries with a command shouldn't have malformed "-include" directives$/) 
   entries = json_db.select { |entry| entry['command'].match(/-include\s+-/) }
   entries.length.should == 0
 end
+

@@ -5,6 +5,11 @@ Feature: Showing build output in simple format
         When I pipe to xcpretty with "--simple --no-color"
         Then I should see a successful compilation message
 
+    Scenario: Showing file compilation with CCache
+        Given I have a file to compile with ccache
+        When I pipe to xcpretty with "--simple --no-color"
+        Then I should see a successful compilation message
+
     Scenario: Showing xib compilation
         Given I have a xib to compile
         When I pipe to xcpretty with "--simple --no-color"
@@ -44,6 +49,11 @@ Feature: Showing build output in simple format
         Given I have a precompiled header
         When I pipe to xcpretty with "--simple --color"
         Then I should see a yellow completion icon
+
+    Scenario: Showing aggregate target
+        Given I have an aggregate target to build
+        When I pipe to xcpretty with "--simple --no-color"
+        Then I should see an aggregate target message
 
     Scenario: Showing analyze
         Given I have a file to analyze
@@ -162,6 +172,11 @@ Feature: Showing build output in simple format
         When I pipe to xcpretty with "--simple --no-color"
         Then I should see a successful code signing message
 
+    Scenario: Showing target will not be code signed warning
+        Given I have a target which will not be code signed
+        When I pipe to xcpretty with "--simple --color"
+        Then I should see a target will not be code signed warning
+
     Scenario: Showing preprocess
         Given I have a file to preprocess
         When I pipe to xcpretty with "--simple --no-color"
@@ -202,3 +217,22 @@ Feature: Showing build output in simple format
         When I pipe to xcpretty with "--simple --color"
         Then I should see a yellow warning message
 
+    Scenario: Showing provisioning profile doesn't support capability
+        Given the provisioning profile doesn't support capability
+        When I pipe to xcpretty with "--simple --no-color"
+        Then I should see the profile doesn't support capability message
+
+    Scenario: Showing provisioning profile doesn't include entitlement
+        Given the provisioning profile doesn't include entitlement
+        When I pipe to xcpretty with "--simple --no-color"
+        Then I should see the profile doesn't include entitlement message
+
+    Scenario: Showing code signing is required error
+        Given the target requires code signing
+        When I pipe to xcpretty with "--simple --no-color"
+        Then I should see the code signing is requried message
+
+    Scenario: Showing no profile matching error
+        Given the matching profile is missing
+        When I pipe to xcpretty with "--simple --no-color"
+        Then I should see the no profile matching message

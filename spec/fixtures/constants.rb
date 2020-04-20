@@ -17,12 +17,67 @@ SAMPLE_KIWI_SUITE_COMPLETION = "Test Suite 'All tests' finished at 2013-12-08 04
 SAMPLE_OCUNIT_SUITE_COMPLETION = "Test Suite '/Users/musalj/Library/Developer/Xcode/DerivedData/ReactiveCocoa-eznxkbqvgfsnrvetemqloysuwagb/Build/Products/Test/ReactiveCocoaTests.octest(Tests)' finished at 2013-12-08 22:09:37 +0000."
 SAMPLE_XCTEST_SUITE_COMPLETION = "Test Suite 'ObjectiveSugarTests.xctest' finished at 2013-12-09 04:42:13 +0000."
 
+SAMPLE_UITEST_CASE_WITH_FAILURE = %Q(\
+Test Case '-[viewUITests.vmtAboutWindow testConnectToDesktop]' started.
+    t =     0.00s     Start Test at 2016-08-18 09:07:17.822
+    t =     0.00s     Set Up
+    t =     0.00s         Launch com.vmware.horizon
+    t =     1.38s             Wait for app to idle
+Wait for connect to desktop done
+    t =    19.06s     Snapshot accessibility hierarchy for com.vmware.horizon
+    t =    20.31s     Find: Descendants matching type Window
+    t =    20.32s     Find: Elements matching predicate '"rdsh1" IN identifiers'
+Connect to desktop done
+    t =    20.32s     Click "Disconnect" Button
+    t =    20.32s         Wait for app to idle
+    t =    20.39s         Find the "Disconnect" Button
+    t =    20.39s             Snapshot accessibility hierarchy for com.vmware.horizon
+    t =    20.53s             Find: Descendants matching type Window
+    t =    20.53s             Find: Elements matching predicate '"rdsh1" IN identifiers'
+    t =    21.54s             Find the "Disconnect" Button (retry 1)
+    t =    21.54s                 Snapshot accessibility hierarchy for com.vmware.horizon
+    t =    21.80s                 Find: Descendants matching type Window
+    t =    21.80s                 Find: Elements matching predicate '"rdsh1" IN identifiers'
+    t =    21.81s                 Find: Descendants matching type Toolbar
+    t =    21.81s                 Find: Descendants matching type Button
+    t =    21.81s                 Find: Elements matching predicate '"Disconnect" IN identifiers'
+    t =    21.81s         Synthesize event
+    t =    22.27s             Assertion Failure: <unknown>:0: UI Testing Failure - Unable to find hit point for element Button 0x608001165880: {{74.0, -54.0}, {44.0, 38.0}}, label: 'Disconnect'
+    t =    22.29s     Tear Down
+Test Case '-[viewUITests.vmtAboutWindow testConnectToDesktop]' failed (22.490 seconds).
+)
+SAMPLE_XCTEST_FAILURE = ""
 SAMPLE_KIWI_FAILURE = "/Users/musalj/code/OSS/ObjectiveSugar/Example/ObjectiveSugarTests/NSNumberTests.m:49: error: -[NumberAdditions Iterators_TimesIteratesTheExactNumberOfTimes] : 'Iterators, times： iterates the exact number of times' [FAILED], expected subject to equal 4, got 5"
 SAMPLE_OLD_SPECTA_FAILURE = "/Users/musalj/code/OSS/ReactiveCocoa/ReactiveCocoaFramework/ReactiveCocoaTests/RACCommandSpec.m:458: error: -[RACCommandSpec enabled_signal_should_send_YES_while_executing_is_YES_and_allowsConcurrentExecution_is_YES] : expected: 1, got: 0"
 SAMPLE_SPECTA_FAILURE = "         Test Case '-[SKWelcomeViewControllerSpecSpec SKWelcomeViewController_When_a_user_opens_the_app_from_a_clean_installation_displays_the_welcome_screen]' started. \n/Users/vickeryj/Code/ipad-register/KIFTests/Specs/SKWelcomeViewControllerSpec.m:11: error: -[SKWelcomeViewControllerSpecSpec SKWelcomeViewController_When_a_user_opens_the_app_from_a_clean_installation_displays_the_welcome_screen] : The step timed out after 2.00 seconds: Failed to find accessibility element with the label \"The asimplest way to make smarter business decisions\""
+SAMPLE_SWIFT_FATAL_ERROR_IN_TEST_MAKE_TESTS_RESTARTING = %Q(\
+Test Suite 'All tests' started at 2017-07-10 15:01:12.049
+Test Suite 'xcprettyFatalErrorTests.xctest' started at 2017-07-10 15:01:12.049
+Test Suite 'xcprettyFatalErrorTests' started at 2017-07-10 15:01:12.049
+Test Case '-[xcprettyFatalErrorTests.xcprettyFatalErrorTests testExample]' started.
+Test Case '-[xcprettyFatalErrorTests.xcprettyFatalErrorTests testExample]' passed (0.001 seconds).
+Test Case '-[xcprettyFatalErrorTests.xcprettyFatalErrorTests testFatalError]' started.
+fatal error: unexpectedly found nil while unwrapping an Optional value
+
+Restarting after unexpected exit or crash in xcprettyFatalErrorTests/testFatalError(); summary will include totals from previous launches.
+
+Test Suite 'Selected tests' started at 2017-07-10 15:01:17.698
+Test Suite 'xcprettyFatalErrorTests.xctest' started at 2017-07-10 15:01:17.698
+Test Suite 'xcprettyFatalErrorTests' started at 2017-07-10 15:01:17.699
+Test Case '-[xcprettyFatalErrorTests.xcprettyFatalErrorTests testPerformanceExample]' started.
+/Users/kenji/Desktop/xcprettyFatalError/xcprettyFatalErrorTests/xcprettyFatalErrorTests.swift:40: Test Case '-[xcprettyFatalErrorTests.xcprettyFatalErrorTests testPerformanceExample]' measured [Time, seconds] average: 0.000, relative standard deviation: 174.575%, values: [0.000005, 0.000001, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000], performanceMetricID:com.apple.XCTPerformanceMetric_WallClockTime, baselineName: "", baselineAverage: , maxPercentRegression: 10.000%, maxPercentRelativeStandardDeviation: 10.000%, maxRegression: 0.100, maxStandardDeviation: 0.100
+Test Case '-[xcprettyFatalErrorTests.xcprettyFatalErrorTests testPerformanceExample]' passed (0.258 seconds).
+Test Suite 'xcprettyFatalErrorTests' failed at 2017-07-10 15:01:17.957.
+     Executed 3 tests, with 1 failure (0 unexpected) in 0.258 (0.259) seconds
+Test Suite 'xcprettyFatalErrorTests.xctest' failed at 2017-07-10 15:01:17.958.
+     Executed 3 tests, with 1 failure (0 unexpected) in 0.258 (0.259) seconds
+Test Suite 'Selected tests' failed at 2017-07-10 15:01:17.958.
+     Executed 3 tests, with 1 failure (0 unexpected) in 0.258 (0.260) seconds
+)
 
 SAMPLE_BUILD = "=== BUILD TARGET The Spacer OF PROJECT Pods WITH THE DEFAULT CONFIGURATION Debug ==="
 SAMPLE_ANALYZE_TARGET = "=== ANALYZE TARGET The Spacer OF PROJECT Pods WITH THE DEFAULT CONFIGURATION Debug ==="
+SAMPLE_AGGREGATE_TARGET = "=== BUILD AGGREGATE TARGET Be Aggro OF PROJECT AggregateExample WITH CONFIGURATION Debug ==="
 SAMPLE_CLEAN = "=== CLEAN TARGET Pods-ObjectiveSugar OF PROJECT Pods WITH CONFIGURATION Debug ==="
 SAMPLE_ANOTHER_CLEAN = "=== CLEAN TARGET Pods OF PROJECT Pods WITH CONFIGURATION Debug ==="
 SAMPLE_BUILD_SUCCEEDED = "** BUILD SUCCEEDED **"
@@ -33,7 +88,7 @@ Clean.Remove clean /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSu
 )
 SAMPLE_EXECUTED_TESTS = "Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds"
 SAMPLE_SPECTA_EXECUTED_TESTS = "       Executed 4 tests, with 0 failures (0 unexpected) in 10.192 (10.193) seconds"
-SAMPLE_OCUNIT_TEST = "Test Case '-[RACCommandSpec enabled_signal_should_send_YES_while_executing_is_YES_and_allowsConcurrentExecution_is_YES]' passed (0.001 seconds)."
+SAMPLE_OCUNIT_TEST = "Test Case '-[RACCommandSpec enabled_signal_should_send_YES_while_executing_is_YES]' passed (0.001 seconds)."
 SAMPLE_SPECTA_TEST = "         Test Case '-[SKWelcomeActivationViewControllerSpecSpec SKWelcomeActivationViewController_When_a_user_enters_their_details_lets_them_enter_a_valid_manager_code]' passed (0.725 seconds)."
 SAMPLE_SLOWISH_TEST = "Test Case '-[RACCommandSpec enabled_signal_should_send_YES_while_executing_is_YES_and_allowsConcurrentExecution_is_YES]' passed (0.026 seconds)."
 SAMPLE_SLOW_TEST = "Test Case '-[RACCommandSpec enabled_signal_should_send_YES_while_executing_is_YES_and_allowsConcurrentExecution_is_YES]' passed (0.101 seconds)."
@@ -60,6 +115,13 @@ CompileC /Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaan
     setenv LANG en_US.US-ASCII
     setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/musalj/code/go/bin:/Users/musalj/.rbenv/shims:/Users/musalj/.rbenv/bin:/usr/local/share/npm/bin:/usr/local/bin:/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=178 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=c99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wnewline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=5.0 -iquote /Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/Kiwi-generated-files.hmap -I/Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/Kiwi-own-target-headers.hmap -I/Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/Kiwi-all-target-headers.hmap -iquote /Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/Kiwi-project-headers.hmap -I/Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/DerivedSources/i386 -I/Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/DerivedSources -Wall -F/Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Products/Debug-iphonesimulator -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/Developer/Library/Frameworks -F/Applications/Xcode.app/Contents/Developer/Library/Frameworks -include /Users/musalj/code/OSS/Kiwi/Supporting\ Files/Kiwi-Prefix.pch -MMD -MT dependencies -MF /Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/Objects-normal/i386/KWNull.d --serialize-diagnostics /Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/Objects-normal/i386/KWNull.dia -c /Users/musalj/code/OSS/Kiwi/Classes/Core/KWNull.m -o /Users/musalj/Library/Developer/Xcode/DerivedData/Kiwi-guimpeiqlepzeaankpygesetdzsx/Build/Intermediates/Kiwi.build/Debug-iphonesimulator/Kiwi.build/Objects-normal/i386/KWNull.o
+)
+SAMPLE_COMPILE_CCACHE = %Q(
+CompileC /Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato-DMMTodoTxt.build/Objects-normal/armv7/DMMTodoTxtParser.o DMMTodoTxt/Pod/Classes/DMMTodoTxtParser.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/delisa/Code/personal/Gelato/Pods
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode/Xcode-9.3.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode/Xcode-9.3.app/Contents/Developer/usr/bin:/Users/delisa/.rbenv/shims:/Users/delisa/.pyenv/shims:/Users/delisa/.swiftenv/shims:/Users/delisa/bin:/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/sbin:/Users/delisa/tmp/go/bin:/Users/delisa/Library/Android/sdk/platform-tools/"
+    /Users/delisa/Code/personal/Gelato/ccache-clang -x objective-c -arch arm64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/delisa/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -fmodules-prune-interval=86400 -fmodules-prune-after=345600 -fbuild-session-file=/Users/delisa/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror=non-modular-include-in-framework-module -fapplication-extension -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wunreachable-code -Wno-implicit-atomic-properties -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DRELEASE=1 -DCOCOAPODS=1 -DNS_BLOCK_ASSERTIONS=1 -DOBJC_OLD_DISPATCH_PROTOTYPES=0 -isysroot /Applications/Xcode/Xcode-9.3.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -miphoneos-version-min=9.0 -g -Wno-sign-conversion -Wno-infinite-recursion -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -fembed-bitcode-marker -iquote /Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/Pods-Gelato\ Today-DMMTodoTxt-generated-files.hmap -I/Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/Pods-Gelato\ Today-DMMTodoTxt-own-target-headers.hmap -I/Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/Pods-Gelato\ Today-DMMTodoTxt-all-target-headers.hmap -iquote /Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/Pods-Gelato\ Today-DMMTodoTxt-project-headers.hmap -I/Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Products/Release-iphoneos/include -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Private -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Private/DMMTodoTxt -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/APAutocompleteTextField -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/Amplitude-iOS -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/Bugsnag -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/CGFloatType -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/DMMTodoTxt -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/Dropbox-iOS-SDK -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/FMDB -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/FXKeychain -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/KSCrash -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/Kiwi -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/PDGestureTableView -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/RJBlurAlertView -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/SpinKit -I/Users/delisa/Code/personal/Gelato/Pods/Headers/Public/UIImageEffects -I/Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/DerivedSources/arm64 -I/Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/DerivedSources -F/Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Products/Release-iphoneos -include /Users/delisa/Code/personal/Gelato/Pods/Target\ Support\ Files/Pods-Gelato\ Today-DMMTodoTxt/Pods-Gelato\ Today-DMMTodoTxt-prefix.pch -MMD -MT dependencies -MF /Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/Objects-normal/arm64/DMMTodoTxtParser.d --serialize-diagnostics /Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/Objects-normal/arm64/DMMTodoTxtParser.dia -c /Users/delisa/Code/personal/Gelato/Pods/DMMTodoTxt/Pod/Classes/DMMTodoTxtParser.m -o /Users/delisa/Library/Developer/Xcode/DerivedData/Gelato-cbyvaqwtjzrxxtfccjobyatrvvwh/Build/Intermediates.noindex/Pods.build/Release-iphoneos/Pods-Gelato\ Today-DMMTodoTxt.build/Objects-normal/arm64/DMMTodoTxtParser.o
 )
 SAMPLE_SWIFT_COMPILE = %Q(
 CompileSwift normal arm64 /Users/paul/foo/bar/siesta/Source/Resource.swift
@@ -104,6 +166,13 @@ Ld /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqg
     setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/musalj/code/go/bin:/Users/musalj/.rbenv/shims:/Users/musalj/.rbenv/bin:/usr/local/share/npm/bin:/usr/local/bin:/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -L/Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator -F/Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator -filelist /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Intermediates/ObjectiveSugar.build/Debug-iphonesimulator/ObjectiveSugar.build/Objects-normal/i386/ObjectiveSugar.LinkFileList -Xlinker -objc_abi_version -Xlinker 2 -ObjC -fobjc-arc -fobjc-link-runtime -Xlinker -no_implicit_dylibs -mios-simulator-version-min=4.3 -framework UIKit -framework Foundation -framework CoreGraphics -lPods -Xlinker -dependency_info -Xlinker /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Intermediates/ObjectiveSugar.build/Debug-iphonesimulator/ObjectiveSugar.build/Objects-normal/i386/ObjectiveSugar_dependency_info.dat -o /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator/ObjectiveSugar.app/ObjectiveSugar
 )
+SAMPLE_LD_RELATIVE = %Q(
+Ld ../Build/Products/Debug-iphonesimulator/ObjectiveSugar.app/ObjectiveSugar normal i386
+    cd /Users/musalj/code/OSS/ObjectiveSugar/Example
+    setenv IPHONEOS_DEPLOYMENT_TARGET 4.3
+    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/musalj/code/go/bin:/Users/musalj/.rbenv/shims:/Users/musalj/.rbenv/bin:/usr/local/share/npm/bin:/usr/local/bin:/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk -L/Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator -F/Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator -filelist /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Intermediates/ObjectiveSugar.build/Debug-iphonesimulator/ObjectiveSugar.build/Objects-normal/i386/ObjectiveSugar.LinkFileList -Xlinker -objc_abi_version -Xlinker 2 -ObjC -fobjc-arc -fobjc-link-runtime -Xlinker -no_implicit_dylibs -mios-simulator-version-min=4.3 -framework UIKit -framework Foundation -framework CoreGraphics -lPods -Xlinker -dependency_info -Xlinker /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Intermediates/ObjectiveSugar.build/Debug-iphonesimulator/ObjectiveSugar.build/Objects-normal/i386/ObjectiveSugar_dependency_info.dat -o /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator/ObjectiveSugar.app/ObjectiveSugar
+).freeze
 SAMPLE_DSYM = %Q(
 GenerateDSYMFile /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator/ObjectiveSugarTests.octest.dSYM /Users/musalj/Library/Developer/Xcode/DerivedData/ObjectiveSugar-ayzdhqmmwtqgysdpznmovjlupqjy/Build/Products/Debug-iphonesimulator/ObjectiveSugarTests.octest/ObjectiveSugarTests
     cd /Users/musalj/code/OSS/ObjectiveSugar/Example
@@ -473,6 +542,12 @@ AnalyzeShallow CocoaChip/CCChip8DisplayView.m
     setenv LANG en_US.US-ASCII
     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=107 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Werror -Wmissing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wshadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wsign-compare -Wshorten-64-to-32 -Wpointer-sign -Wnewline-eof -Wno-selector -Wstrict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -fvisibility=hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-multi-file -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-config -Xclang mode=shallow -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-generated-files.hmap -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-own-target-headers.hmap -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-all-target-headers.hmap -iquote /Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-project-headers.hmap -I/Users/dustin/Source/CocoaChip/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/DerivedSources/x86_64 -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/DerivedSources -F/Users/dustin/Source/CocoaChip/build/Release -include /var/folders/nn/s88k060x7016ccml2bc6f5_h0000gn/C/com.apple.DeveloperTools/5.0.2-5A3005/Xcode/SharedPrecompiledHeaders/CocoaChip-Prefix-dzmrdzscqkbvvrafvxsbjwbxtmlz/CocoaChip-Prefix.pch --analyze /Users/dustin/Source/CocoaChip/CocoaChip/CCChip8DisplayView.m -o /Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/StaticAnalyzer/CocoaChip/CocoaChip/normal/x86_64/CCChip8DisplayView.plist
 )
+SAMPLE_ANALYZE_CPP = %Q(
+Analyze CocoaChip/CCChip8DisplayView.cpp
+    cd /Users/dustin/Source/CocoaChip
+    setenv LANG en_US.US-ASCII
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=107 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Werror -Wmissing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wshadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wsign-compare -Wshorten-64-to-32 -Wpointer-sign -Wnewline-eof -Wno-selector -Wstrict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -fvisibility=hidden -Wno-sign-conversion -D__clang_analyzer__ -Xclang -analyzer-output=plist-multi-file -Xclang -analyzer-config -Xclang path-diagnostics-alternate=true -Xclang -analyzer-config -Xclang report-in-main-source-file=true -Xclang -analyzer-checker -Xclang security.insecureAPI.UncheckedReturn -Xclang -analyzer-checker -Xclang security.insecureAPI.getpw -Xclang -analyzer-checker -Xclang security.insecureAPI.gets -Xclang -analyzer-checker -Xclang security.insecureAPI.mkstemp -Xclang -analyzer-checker -Xclang security.insecureAPI.mktemp -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.rand -Xclang -analyzer-disable-checker -Xclang security.insecureAPI.strcpy -Xclang -analyzer-checker -Xclang security.insecureAPI.vfork -iquote /Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-generated-files.hmap -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-own-target-headers.hmap -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-all-target-headers.hmap -iquote /Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/CocoaChip-project-headers.hmap -I/Users/dustin/Source/CocoaChip/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/DerivedSources/x86_64 -I/Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/DerivedSources -F/Users/dustin/Source/CocoaChip/build/Release -include /var/folders/nn/s88k060x7016ccml2bc6f5_h0000gn/C/com.apple.DeveloperTools/5.0.2-5A3005/Xcode/SharedPrecompiledHeaders/CocoaChip-Prefix-cqqikmscxiepjgdcrgpysqicucyu/CocoaChip-Prefix.pch --analyze /Users/dustin/Source/CocoaChip/CocoaChip/CCChip8DisplayView.m -o /Users/dustin/Source/CocoaChip/build/CocoaChip.build/Release/CocoaChip.build/StaticAnalyzer/CocoaChip/CocoaChip/normal/x86_64/CCChip8DisplayView.plist
+).freeze
 SAMPLE_COMPILE_XIB = %Q(
 CompileXIB CocoaChip/en.lproj/MainMenu.xib
     cd /Users/dustin/Source/CocoaChip
@@ -511,7 +586,7 @@ PBXCp build/Release/CocoaChipCore.framework build/Release/CocoaChip.app/Contents
 warning: skipping copy phase strip, binary is code signed: /Users/dustin/Source/CocoaChip/build/Release/CocoaChipCore.framework/Versions/A/CocoaChipCore
 )
 
-SAMPLE_SCREENSHOT_FILE = 'RACCommandSpec, line 80, hello xcpretty.png'
+SAMPLE_SCREENSHOT_FILE = 'RACCommandSpec_enabled_signal_should_send_YES_while_executing_is_YES.png'
 SAMPLE_UNRELATED_IMAGE_FILE = 'apple_raw.png'
 
 ################################################################################
@@ -536,6 +611,14 @@ Code Sign error: No code signing identites found: No valid signing identities (i
 
 SAMPLE_CODESIGN_ERROR_NO_SPACES = %Q(
 CodeSign error: code signing is required for product type 'Application' in SDK 'iOS 7.0'
+)
+
+SAMPLE_REQUIRES_PROVISION = %Q(
+PROJECT_NAME requires a provisioning profile. Select a provisioning profile for the "Debug" build configuration in the project editor.
+)
+
+SAMPLE_NO_CERTIFICATE = %Q(
+No certificate matching 'iPhone Distribution: Name (B89SBB0AV9)' for team 'B89SBB0AV9':  Select a different signing certificate for CODE_SIGN_IDENTITY, a team that matches your selected certificate, or switch to automatic provisioning.
 )
 
 SAMPLE_FATAL_COMPILE_ERROR = %Q(
@@ -585,6 +668,27 @@ SAMPLE_COMPILE_ERROR_WITH_TILDES = %Q(
             ~~ ^~~~~~~
 )
 
+SAMPLE_PROFILE_DOESNT_SUPPORT_CAPABILITY_ERROR = %Q(
+Provisioning profile "Profile Name" doesn't support the Push Notifications capability.
+)
+
+SAMPLE_PROFILE_DOESNT_INCLUDE_ENTITLEMENT_ERROR = %Q(
+Provisioning profile "Profile Name" doesn't include the aps-environment entitlement.
+)
+
+SAMPLE_CODE_SIGNING_IS_REQUIRED_ERROR = %Q(
+Code signing is required for product type 'Application' in SDK 'iOS 10.0'
+)
+
+SAMPLE_NO_PROFILE_MATCHING_ERROR = %Q(
+No profile matching 'TargetName' found:  Xcode couldn't find a profile matching 'TargetName'. Install the profile (by dragging and dropping it onto Xcode's dock item) or select a different one in the General tab of the target editor.
+)
+
+SAMPLE_SWIFT_UNAVAILABLE = "Swift is unavailable on iOS earlier than 7.0; please set IPHONEOS_DEPLOYMENT_TARGET to 7.0 or later (currently it is '6.0')."
+
+SAMPLE_USE_LEGACY_SWIFT = "“Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly."
+
+SAMPLE_MODULE_INCLUDES_ERROR = "<module-includes>:1:1: error: umbrella header for module 'ModuleName' does not include header 'Header.h'"
 
 ################################################################################
 # WARNINGS
@@ -597,4 +701,7 @@ SAMPLE_FORMAT_WARNING = %Q(
                          %d
 1 warning generated.
 )
+
+SAMPLE_WILL_NOT_BE_CODE_SIGNED = "FrameworkName will not be code signed because its settings don't specify a development team."
+SAMPLE_FORMAT_OTHER_UNRECOGNIZED_STRING = "This is a string that won't be matched by any other regex."
 
